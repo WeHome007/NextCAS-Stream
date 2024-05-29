@@ -19,12 +19,12 @@ const menus = [
     key: 'bundle',
     component: BundleMenu,
   },
-  {
+  // {
 
-    icon: 'menu-gender',
-    key: 'avatar',
-    component: AvatarMenu,
-  },
+  //   icon: 'menu-gender',
+  //   key: 'avatar',
+  //   component: AvatarMenu,
+  // },
 ]
 
 function getIconUrl(name: string) {

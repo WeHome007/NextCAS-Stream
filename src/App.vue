@@ -62,10 +62,10 @@ async function _init() {
     stream.value = await NextStream.createLocal({
       // 替换为当前运行串流模式客户端的ip地址
       ip: '192.168.20.157',
-      actorId: '641811add41a3f2f91247aea',
+      actorId: 'actor_102217',
       container: container.value,
-      avatarId: 'avatar_2158',
-      scene: 'scene_62a30cc005f2106d2efe7635',
+      avatarId: 'avatar_63edcef5ea719833f2b1eaff',
+      scene: 'scene_63c53373ddb14647413c8f2a',
     })
     ready.value = true
 
