@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { nextTick, onMounted, provide, ref, shallowRef, watch } from 'vue'
-import { NextStream ,PresetCameraConfig} from '@nextcas/stream'
+import { NextStream,PresetCameraConfig } from '@nextcas/stream'
 import gsap from 'gsap'
 import Send from './components/send.vue'
 import MessageBoard from './components/messageBoard.vue'
@@ -13,12 +13,13 @@ const container = ref()
 
 const ready = ref(false)
 const started = ref(false)
+const closed = ref(false)
 const app = useAppStore()
 
 const config = useConfigStore()
 
 onMounted(async () => {
-  _init()
+  init()
   // window.addEventListener('keypress', (e) => {
   //   console.log(e)
   // })
@@ -26,7 +27,6 @@ onMounted(async () => {
 
 const stream = shallowRef<NextStream>()
 const openMessage = ref(false)
-
 const messageBoard = ref<HTMLElement>()
 
 const messageBoardTween = shallowRef<gsap.core.Tween>()
@@ -55,20 +55,37 @@ watch(() => config.currentLocation, (v) => {
     stream.value?.setCamera(v)
 })
 
-async function _init() {
-  
-
+async function init() {
   try {
+    closed.value = false
+    await nextTick()
+
+
     stream.value = await NextStream.createLocal({
-      // 替换为当前运行串流模式客户端的ip地址
       ip: '192.168.20.157',
+      // 需要替换，非真实ID
+      // actor_102217',
       actorId: 'actor_102217',
+      // actorId: '641811add41a3f2f91247aea',
       container: container.value,
+      // 需要替换，非真实ID
       avatarId: 'avatar_63edcef5ea719833f2b1eaff',
+      // avatarId: 'avatar_2158',
+
+      // 需要替换，非真实ID
+      // scene_63c53373ddb14647413c8f2a
       scene: 'scene_63c53373ddb14647413c8f2a',
+
+      // scene: 'scene_62a30cc005f2106d2efe7635',
     })
+
     ready.value = true
 
+    stream.value.on('close', () => {
+      closed.value = true
+      ready.value = false
+      started.value = false
+    })
     stream.value?.setCamera(PresetCameraConfig.Full)
   }
   catch (error) {
@@ -86,7 +103,7 @@ function _startRender() {
 }
 
 function _closeRender() {
-  stream.value?.close()
+
 }
 
 const messageStore = useMessageStore()
@@ -109,29 +126,39 @@ provide('streamSDK', () => stream.value)
 
 <template>
   <div class="w-full h-full relative flex ">
-    <div ref="container" class="w-full h-full bg-red absolute" />
-    <template v-if="started">
-      <div v-if="ready && app.token" class="h-full z-100 w-full relative">
-        <div ref="messageBoard" class="h-full absolute bottom-0 left-[-50%] w-1/2 py-18">
-          <MessageBoard v-model:open="openMessage" :messages="messageStore.messages" />
-        </div>
-        <div class="w-16 top-0 bottom-0 absolute right-4">
-          <Menus />
-        </div>
-
-        <div class=" absolute bottom-0 left-0 w-full p-4">
-          <Send @send="sendText" />
-        </div>
+    <template v-if="closed">
+      <div class=" flex-center ">
+        <button @click="init">
+          重新启动
+        </button>
+        <span>客户端已关闭</span>
       </div>
     </template>
-    <div v-else class=" w-full h-full z-100">
-      <div v-if="!ready">
-        正在加载
+    <template v-else>
+      <div ref="container" class="w-full h-full bg-red absolute" />
+      <template v-if="started">
+        <div v-if="ready && app.token" class="h-full z-100 w-full relative">
+          <div ref="messageBoard" class="h-full absolute bottom-0 left-[-50%] w-1/2 py-18">
+            <MessageBoard v-model:open="openMessage" :messages="messageStore.messages" />
+          </div>
+          <div class="w-16 top-0 bottom-0 absolute right-4">
+            <Menus />
+          </div>
+
+          <div class=" absolute bottom-0 left-0 w-full p-4">
+            <Send @send="sendText" />
+          </div>
+        </div>
+      </template>
+      <div v-else class=" w-full h-full z-100">
+        <div v-if="!ready">
+          正在加载
+        </div>
+        <button v-else @click="_startRender">
+          启动
+        </button>
       </div>
-      <button v-else @click="_startRender">
-        启动
-      </button>
-    </div>
+    </template>
   </div>
 </template>
 

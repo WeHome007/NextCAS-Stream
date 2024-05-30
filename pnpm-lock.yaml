@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@nextcas/stream':
-    specifier: 0.0.1-beta.3
-    version: 0.0.1-beta.3
+    specifier: 0.0.1-beta.5
+    version: 0.0.1-beta.5
   '@nextcas/voice':
     specifier: ^1.0.2
     version: 1.0.2
@@ -650,8 +650,8 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
 
-  /@nextcas/stream@0.0.1-beta.3:
-    resolution: {integrity: sha512-v/ZHc5+pdAhupjatAsiG5SxLnxynXVQTp+vbwGZVRd111qHEapeOcEF5g40I0AUTROoKEOvXby2YLvrTQUCLKg==}
+  /@nextcas/stream@0.0.1-beta.5:
+    resolution: {integrity: sha512-JjNTcYDuw++JD746R9gyZX8Wr2bfTMLZSBI8f7gUqaMNppDqTXOgiKHqJx23JrIhsJBEuge1PVTP75eSjUy+nA==}
     dependencies:
       base64-js: 1.5.1
       emittery: 1.0.3
