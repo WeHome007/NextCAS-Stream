@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { nextTick, onMounted, provide, ref, shallowRef, watch } from 'vue'
-import { NextStream,PresetCameraConfig } from '@nextcas/stream'
+import { NextStream, PresetCameraConfig } from '@nextcas/stream'
 import gsap from 'gsap'
 import Send from './components/send.vue'
 import MessageBoard from './components/messageBoard.vue'
@@ -59,24 +59,16 @@ async function init() {
   try {
     closed.value = false
     await nextTick()
-
-
     stream.value = await NextStream.createLocal({
       ip: '192.168.20.157',
-      // 需要替换，非真实ID
-      // actor_102217',
-      actorId: 'actor_102217',
-      // actorId: '641811add41a3f2f91247aea',
+      actorId: '641811add41a3f2f91247aea',
       container: container.value,
-      // 需要替换，非真实ID
-      avatarId: 'avatar_63edcef5ea719833f2b1eaff',
-      // avatarId: 'avatar_2158',
-
-      // 需要替换，非真实ID
-      // scene_63c53373ddb14647413c8f2a
-      scene: 'scene_63c53373ddb14647413c8f2a',
-
-      // scene: 'scene_62a30cc005f2106d2efe7635',
+      avatarId: 'avatar_2158',
+      scene: 'transparent',
+      // scene: {
+      //   id: 'scene_63c53373ddb14647413c8f2a',
+      //   type: 'scene',
+      // },
     })
 
     ready.value = true
@@ -89,7 +81,8 @@ async function init() {
     stream.value?.setCamera(PresetCameraConfig.Full)
   }
   catch (error) {
-    // console.log(error)
+    // eslint-disable-next-line no-console
+    console.log(error)
   }
 }
 
