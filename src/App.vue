@@ -61,9 +61,9 @@ async function init() {
     await nextTick()
     stream.value = await NextStream.createLocal({
       ip: '192.168.20.157',
-      actorId: '641811add41a3f2f91247aea',
+      actorId: 'actor_102217',
       container: container.value,
-      avatarId: 'avatar_2158',
+      avatarId: 'avatar_63edcef5ea719833f2b1eaff',
       scene: 'transparent',
       // scene: {
       //   id: 'scene_63c53373ddb14647413c8f2a',
