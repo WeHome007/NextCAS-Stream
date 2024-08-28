@@ -40,10 +40,10 @@ import { NextStream, PresetCameraConfig } from '@nextcas/stream'
 
 const stream = await NextStream.createLocal({
   ip: '192.168.20.157',//客户端所在局域网IP，如果是渲染应用和客户端在同一机器，使用127.0.0.1即可
-  actorId: 'actor_102217',
+  actorId: 'actor_102217',//替换为自己创建的智能体ID
   container: '#app' , 
-  avatarId: 'avatar_63edcef5ea719833f2b1eaff',
-  scene: 'scene_63c53373ddb14647413c8f2a',
+  avatarId: 'avatar_63edcef5ea719833f2b1eaff',//替换为自己的形象ID
+  scene: 'transparent',//
 })
 // 设置初始镜头
 stream.setCamera(PresetCameraConfig.Full)
