@@ -66,8 +66,8 @@ async function init() {
       avatarId: 'avatar_63edcef5ea719833f2b1eaff',
       scene: 'transparent',
       // scene: {
-      //   id: 'scene_63c53373ddb14647413c8f2a',
-      //   type: 'scene',
+      //   id: '64f9343e335fdd204dd527e3',
+      //   type: 'nus',
       // },
     })
 
