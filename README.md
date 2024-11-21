@@ -14,7 +14,10 @@
 ##### 1.SDK安装
 
 ```bash
+
+npm install webrtc-adapter
 npm install @nextcas/stream
+
 ```
 
 ##### 2.云端串流(初始化)
