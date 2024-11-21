@@ -17,7 +17,8 @@
     "gsap": "^3.12.5",
     "pinia": "^2.1.7",
     "vant": "^4.9.0",
-    "vue": "^3.4.24"
+    "vue": "^3.4.24",
+    "webrtc-adapter": "^9.0.1"
   },
   "devDependencies": {
     "@iconify-json/tabler": "^1.1.111",
