@@ -8,6 +8,7 @@ import { useAppStore } from './store/app'
 import { useMessageStore } from './store/messages'
 import Menus from './components/menus.vue'
 import { useConfigStore } from './store/config'
+import 'webrtc-adapter'
 
 const container = ref()
 
