@@ -11,7 +11,7 @@
     "dev": "vite"
   },
   "dependencies": {
-    "@nextcas/stream": "0.0.1-beta.19",
+    "@nextcas/stream": "0.0.1-beta.21",
     "@nextcas/voice": "^1.0.2",
     "@vueuse/core": "^10.9.0",
     "gsap": "^3.12.5",
