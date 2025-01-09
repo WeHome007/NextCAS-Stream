@@ -70,6 +70,7 @@ async function init() {
       //   id: '64f9343e335fdd204dd527e3',
       //   type: 'nus',
       // },
+      autoRender:true
     })
 
     ready.value = true
@@ -90,6 +91,10 @@ async function init() {
 function _startRender() {
   if (stream.value)
     stream.value.start()
+
+  // 如果autoRender设置为false，则在用户点击之后调用start()；如果autoRender设置为true，则在用户点击之后调用unMute()
+  // stream.value?.start()
+  // stream.value?.unMute()
 
   nextTick(() => {
     started.value = true
